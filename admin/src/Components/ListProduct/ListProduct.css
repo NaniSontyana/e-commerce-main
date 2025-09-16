@@ -1,0 +1,115 @@
+/* Container for all products */
+.listproduct-allproducts {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 20px 40px;
+  margin: 30px auto;
+  border-radius: 6px;
+  background: #fff;
+  gap: 10px;
+  max-height: 740px;
+  overflow-y: auto; /* scroll if too many products */
+}
+
+/* Table header row using grid */
+.listprodct-format-main {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr 1fr 1fr 1fr;
+  gap: 10px;
+  padding: 12px 0;
+  color: #454545;
+  font-size: 15px;
+  font-weight: 600;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Header text */
+.listprodct-format-main p {
+  margin: 0;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Product rows using grid to match header */
+.listproduct-format-main {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr 1fr 1fr 1fr;
+  gap: 10px;
+  padding: 12px 0;
+  align-items: center;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+/* Product details text */
+.listproduct-format-main p {
+  margin: 0;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Product image */
+.listproduct-product-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+/* Optional icon inside product (like small logo) */
+.listproduct-product-icon {
+  height: 80px;
+  object-fit: cover;
+}
+
+/* Remove (cross) icon */
+.listproduct-remove-icon {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  justify-self: center; /* center inside grid column */
+}
+
+.listproduct-remove-icon:hover {
+  transform: scale(1.2);
+}
+
+/* Responsive design */
+@media screen and (max-width: 1024px) {
+  .listproduct-allproducts {
+    padding: 15px 20px;
+  }
+
+  .listprodct-format-main,
+  .listproduct-format-main {
+    grid-template-columns: 1fr 2fr 1fr 1fr 1fr 1fr;
+    gap: 8px;
+  }
+
+  .listproduct-product-image {
+    width: 50px;
+    height: 50px;
+  }
+
+  .listproduct-remove-icon {
+    width: 18px;
+    height: 18px;
+  }
+}
+@media(max-width:800px){
+  .list-product{
+    box-sizing:border-box;
+    width: 95%;
+    height: 100%;
+    padding: 10px 30px;
+    margin: 20px auto;
+  }
+}
