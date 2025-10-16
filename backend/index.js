@@ -13,7 +13,7 @@ const bcrypt = require("bcrypt");
 app.use(express.json());
 
 // ✅ CORS (only once, no duplicates)
-const allowedOrigins = ["http://localhost:3000", "http://localhost:5173"];
+const allowedOrigins = ["http://localhost:3000", "http://localhost:5173","http://localhost:4000"];
 
 app.use(cors({
   origin: function (origin, callback) {
@@ -186,6 +186,132 @@ app.post("/login", async (req, res) => {
     return res.status(500).json({ success: false, error: "Server error" });
   }
 });
+
+//creating endpoint for newcollection data
+// New Collections API
+app.get("/new_collections", async (req, res) => {
+  try {
+    const products = await Product.find({}).limit(10); // or whatever logic you want
+    res.json(products);
+  } catch (error) {
+    console.error("Error fetching new collections:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+//creating end point for popularinshirts data
+app.get("/popularinshirts", async (req, res) => {
+  let products = await Product.find({ category: "Shirts" });
+  let popular_in_shirts = products.slice(0, 8);
+  console.log("popular_in_shirts_fetched");
+  res.send(popular_in_shirts);
+});
+
+//creating middleware to fetch user
+const fetchUser = (req, res, next) => {
+  const token = req.header("auth-token");
+  if (!token) {
+    return res.status(401).json({ error: "No token provided" });
+  }
+
+  try {
+    const data = jwt.verify(token, process.env.JWT_SECRET || "secret_ecom");
+    req.user = data.user;
+    next();
+  } catch (error) {
+    console.error("❌ JWT verification failed:", error);
+    res.status(401).json({ error: "Invalid token" });
+  }
+};
+
+
+//creating endpoint for adding products in cartdata
+// ✅ Add to Cart API
+// Add to Cart API
+app.post("/addtocart", fetchUser, async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const { itemId } = req.body;
+
+    const user = await Users.findById(userId);
+    if (!user) {
+      return res.status(404).json({ success: false, message: "User not found" });
+    }
+
+    // Initialize if empty
+    if (!user.cartData) user.cartData = {};
+
+    // Add item
+    if (user.cartData[itemId]) {
+      user.cartData[itemId] += 1;
+    } else {
+      user.cartData[itemId] = 1;
+    }
+
+    await user.save();
+    console.log(`✅ Added item ${itemId} to ${user.name}'s cart`);
+    res.json({ success: true, message: "Item added to cart" });
+
+  } catch (error) {
+    console.error("❌ Error in /addtocart:", error);
+    res.status(500).json({ success: false, message: "Internal Server Error" });
+  }
+});
+
+//creating endpoint to remove products from cartdata
+// Remove from Cart API
+app.post("/removefromcart", fetchUser, async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const { itemId } = req.body;
+    const itemKey = String(itemId); // ✅ Convert to string
+
+    const user = await Users.findById(userId);
+    if (!user) {
+      return res.status(404).json({ success: false, message: "User not found" });
+    }
+
+    if (!user.cartData) user.cartData = {};
+
+    if (user.cartData[itemKey] && user.cartData[itemKey] > 0) {
+      user.cartData[itemKey] -= 1;
+      await user.save();
+      console.log(`🗑️ Removed item ${itemKey} from ${user.name}'s cart`);
+      return res.json({ success: true, message: "Item removed from cart" });
+    } else {
+      return res.status(400).json({ success: false, message: "Item not in cart" });
+    }
+  } catch (error) {
+    console.error("❌ Error in /removefromcart:", error);
+    res.status(500).json({ success: false, message: "Internal Server Error" });
+  }
+});
+
+//creating endpoint to get cart data
+// ✅ Get Cart Data API
+app.get("/getcart", fetchUser, async (req, res) => {
+  try {
+    const userId = req.user.id;
+
+    const user = await Users.findById(userId);
+    if (!user) {
+      return res.status(404).json({ success: false, message: "User not found" });
+    }
+
+    // Initialize if empty
+    if (!user.cartData) {
+      user.cartData = {};
+      await user.save();
+    }
+
+    console.log(`🛒 Cart fetched for ${user.name}`);
+    return res.json({ success: true, cartData: user.cartData });
+
+  } catch (error) {
+    console.error("❌ Error in /getcart:", error);
+    res.status(500).json({ success: false, message: "Internal Server Error" });
+  }
+});
+
 
 // Run server
 app.listen(port, (err) => {
