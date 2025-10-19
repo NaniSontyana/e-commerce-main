@@ -1,0 +1,21 @@
+# 🛍️ E-Commerce Web Application
+
+A fully responsive and modern **E-Commerce Website** built with **React.js**.  
+This project showcases products, offers, and categories with components such as `Hero`, `Popular`, `Offers`, and more.
+
+---
+
+## 🚀 Features
+
+- 🧭 **User-friendly Interface** – Clean and attractive design using React components.
+- 🛒 **Add to Cart Functionality** – Manage cart items dynamically.
+- 💰 **Product Listings** – Display popular and new collections.
+- 🎁 **Exclusive Offers Section** – Highlights deals and promotions.
+- 🔐 **User Authentication** – Login and signup functionality.
+- 📱 **Responsive Design** – Works smoothly across devices.
+- 🌐 **MongoDB + Express Backend (Optional)** – For handling product and user data (if connected).
+
+---
+
+## 🏗️ Project Structure
+
