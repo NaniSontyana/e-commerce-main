@@ -1,0 +1,35 @@
+.admin {
+  display: flex;
+  height: 100vh;   /* full screen */
+  width: 100%;
+}
+
+/* Sidebar is fixed width, handled by Sidebar.css */
+.sidebar {
+  width: 220px;
+  min-height: 100vh;
+  background: #fff;
+  border-right: 1px solid #ddd;
+}
+
+/* Right side where components render */
+.admin-content {
+  flex: 1;
+  padding: 20px;
+  background: #f9f9f9;
+  overflow-y: auto;
+}
+
+/* Responsive: stack sidebar on top */
+@media (max-width: 768px) {
+  .admin {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    min-height: auto;
+    border-right: none;
+    border-bottom: 1px solid #ddd;
+  }
+}

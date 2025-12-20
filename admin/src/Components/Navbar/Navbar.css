@@ -1,0 +1,31 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 60px;
+  margin-bottom: 1px;
+  background: white;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar img {
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+  cursor: pointer;
+}
+.navbar image {
+  height: 100px;
+  width: auto;
+  object-fit: contain;
+  cursor: pointer;
+}
+
+@media(max-width:800px){
+  .navbar {
+    padding: 15px 30px;
+  }
+}

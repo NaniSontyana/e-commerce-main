@@ -1,0 +1,148 @@
+.add-Product {
+  width: 100%;
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 25px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.addProduct-itemfield {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.addProduct-itemfield p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+.addProduct-itemfield input,
+.addProduct-itemfield select {
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: border 0.2s ease-in-out;
+}
+
+.addProduct-itemfield input:focus,
+.addProduct-itemfield select:focus {
+  border-color: #4f46e5; /* nice blue */
+}
+
+.addproduct-thumbnail-img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  border: 2px dashed #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  background: #fafafa;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.addproduct-thumbnail-img:hover {
+  border-color: #4f46e5;
+  background: #f0f0ff;
+  align-items: center;
+}
+
+.addproduct-btn {
+  margin-top: 15px;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: #4f46e5;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out, transform 0.1s ease-in-out;
+}
+
+.addproduct-btn:hover {
+  background: #4338ca;
+}
+
+.addproduct-btn:active {
+  transform: scale(0.97);
+}
+.addproduct-itemfield {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.addproduct-itemfield p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+.addproduct-selector {
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  background: #fff;
+  outline: none;
+  cursor: pointer;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.addproduct-selector:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+}
+
+.addproduct-selector option {
+  padding: 8px;
+}
+
+.cursor-pointer{
+  align-items: center;
+  
+
+}
+.addproduct-price{
+  display: flex;
+  
+}
+.addProduct-itemfield p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #393232;
+/* centers text */
+}
+
+.addProduct-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;   /* centers content horizontally */
+  justify-content: center; /* optional: centers vertically if you give it height */
+  gap: 8px;              /* space between image and other content if added */
+  margin-top: 10px;
+}
+.addProduct-row {
+  display: flex;
+  gap: 20px;              /* space between the two inputs */
+  justify-content: space-between;
+}
+
+.addProduct-row .addProduct-itemfield {
+  flex: 1;                /* make both take equal width */
+}
+
